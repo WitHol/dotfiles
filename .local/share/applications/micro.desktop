@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=micro
+Comment=A simple terminal text editor
+Icon=/usr/share/applications/utilities-terminal
+Terminal=true
+Exec=micro
+Categories=ConsoleOnly;TextEditor;
+Keywords=File;Text;Editor;

@@ -1,0 +1,94 @@
+@define-color background #111114;
+@define-color border #ffffff;
+
+@define-color workspace_selected #ffffff;
+@define-color workspace_active #ffffff;
+@define-color workspace_idle #0808a0;
+@define-color workspace_urgent #f38ba8;
+
+@define-color window #ffffff;
+
+@define-color modules-right #ffffff;
+
+* 
+{
+    font-family: Cantarell, Symbols Nerd Font;
+    font-weight: 900;
+    font-size: 16px;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar
+{
+    background-color: @background;
+}
+
+#workspaces button
+{
+	background: transparent;
+	box-shadow: 0 0 0 transparent;
+}
+
+#workspaces button:hover 
+{
+	color: @workspace_selected;
+}
+
+#workspaces button.selected
+{
+	color: @workspace_selected;
+}
+
+#workspaces button.active {
+    color: @workspace_active;
+
+	border-top-style: solid;
+	border-top-width: 3;
+	border-top-color: @workspace_active;
+}
+
+#workspaces button.urgent {
+    color: @workspace_urgent;
+}
+
+#window
+{
+	background-color: transparent;
+	color: @window;
+}
+
+#temperature,
+#clock,
+#network,
+#custom-power,
+#cpu,
+#custom-launcher,
+#custom-screenshot
+{
+    padding: 2 12px;
+    border-radius: 15px;
+    margin: 5px 0;
+    color: @modules-right;
+    background-color: transparent;
+}
+
+tooltip *
+{
+	color: @modules-right;
+}
+
+#custom-power
+{
+	font-size: 24px;
+}
+
+#custom-launcher
+{
+	font-size: 24px;
+}
+
+#custom-screenshot
+{
+	font-size: 24px;
+}

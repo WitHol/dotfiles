@@ -1,0 +1,13 @@
+window
+{
+	height: 101px;
+	width: 300px;
+	location: north east;
+	x-offset: -10px;
+	y-offset: 0px;
+}
+
+inputbar 
+{
+	enabled: false;
+}

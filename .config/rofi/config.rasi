@@ -1,0 +1,87 @@
+@theme "/dev/null"
+
+configuration 
+{
+	display-drun: "Applications:";
+	drun-display-format: "{name}";
+	modi: "window,run,drun";
+}
+
+
+* 
+{
+	bg: #111114;
+	bg-bar: #222228;
+	bg-selected: #222228;
+
+	fg: #ffffff;
+
+	font-family: "JetBrainsMono Nerd Font";
+	text-color: @fg;
+  	text-style: bold;
+
+	background-color: @bg;
+
+	border: 0;
+	margin: 0;
+	padding: 0;
+	spacing: 0;
+}
+
+inputbar 
+{
+	children: [prompt, entry];
+	background-color: @bg-bar;
+	text-color: @fg;
+	padding: 10 20;
+}
+
+entry 
+{
+	padding: 0 10;
+	text-color: inherit;
+	background-color: inherit;
+}
+
+prompt 
+{
+	text-color: inherit;
+	background-color: inherit;
+}
+
+
+listview 
+{
+	text-color: @fg;
+	padding: 10 0;
+}
+
+element 
+{
+	padding: 2 10;
+	text-color: inherit;
+	background-color: inherit;
+}
+
+element selected 
+{
+	background-color: @bg-selected;
+}
+
+element-text 
+{
+	background-color: inherit;
+	text-color: inherit;
+}
+
+element-icon 
+{
+	size: 30;
+}
+
+
+
+mainbox 
+{
+	children: [inputbar, listview];
+}

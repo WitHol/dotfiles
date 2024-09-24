@@ -1,0 +1,83 @@
+{
+	// General settings
+	"layer": "top",
+	"height": 30,
+	"spacing": 5,
+	"enableDefaultFonts": true,
+	"margin": 10,
+
+	// Modules
+	"modules-left": 
+	[
+		"hyprland/workspaces"
+	],
+	
+	"modules-center": 
+	[
+		"hyprland/window"
+	],
+	
+	"modules-right": 
+	[
+		"network",
+		"cpu",
+		"custom/screenshot",
+		"clock",
+		"custom/launcher",
+		"custom/power",
+	],
+
+	// Modules settings
+	"hyprland/workspaces": 
+	{
+		"disable-scroll": true,
+		"all-outputs": true,
+		"on-click": "activate"
+	},
+	 
+	"clock": 
+	{
+		"format": "{:%H:%M}",
+		"tooltip": false,
+		"interval": 1,
+	},
+
+	"network": 
+	{
+		"format": "?",
+        "format-wifi": "󰤨 ",
+        "format-disconnected": "󰤭",
+        "format-disabled": "󰤭",
+		"on-click": "wifimenu",
+		"tooltip": false,
+		"interval": 1,
+    },
+
+   	"custom/power": 
+	{
+		"format": "󰐥",
+		"on-click": "powermenu",
+        "tooltip" : false,
+    },
+
+    "custom/launcher":
+    {
+    	"format": "󰮫",
+    	"on-click": "applauncher",
+    	"tooltip": false,
+    },
+
+    "cpu":
+    {
+    	"interval": 1,
+    	"format": " {usage}%",
+    	"tooltip": false,
+    },
+
+    "custom/screenshot":
+    {
+    	"format": "",
+    	"on-click": "screenshot",
+       	"tooltip": false,	
+    },
+}
