@@ -10,13 +10,14 @@ configuration
 
 * 
 {
-	bg: #111114;
+	bg: #111111;
 	bg-bar: #222228;
 	bg-selected: #222228;
 
 	fg: #ffffff;
 
-	font-family: "JetBrainsMono Nerd Font";
+	font: "JetBrainsMono Nerd Font 14";
+	font-weight: 900;
 	text-color: @fg;
   	text-style: bold;
 

@@ -3,8 +3,8 @@ window
 	height: 500px;
 	width: 500px;
 	location: north west;
-	x-offset: -10px;
-	y-offset: 0px;
+	x-offset: 10px;
+	y-offset: 60px;
 }
 
 inputbar 

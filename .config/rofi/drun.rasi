@@ -4,5 +4,5 @@ window
 	height: 60%;
 	padding: 10;
 	location: north;
-	y-offset: 0px;
+	y-offset: 60px;
 }
