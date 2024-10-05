@@ -1,0 +1,3 @@
+#/usr/bin/sh
+
+prinf "" | rofi -dmenu -i -theme-str '@import "minimized.rasi"'
