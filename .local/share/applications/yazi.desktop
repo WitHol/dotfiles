@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=yazi
+Comment=A terminal file manager
+Icon=/usr/share/applications/utilities-terminal
+Terminal=true
+Exec=yazi
+Categories=ConsoleOnly;FileManager;
+Keywords=File;Manager;

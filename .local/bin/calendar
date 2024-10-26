@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+
+echo -e "$(date +%A)\n$(date +%B) $(date +%d) $(date +%Y)\n$(date +%H):$(date +%M):$(date +%S)" | rofi -dmenu -theme-str '@import "calendar.rasi"'

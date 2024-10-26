@@ -1,0 +1,66 @@
+[manager]
+
+keymap = [
+	# Basic
+	{ on = "<Esc>", run = ["unyank", "escape"], desc = "Exit the current action" },
+	{ on = "<Enter>", run = "open", desc = "Open a file" },
+	{ on = ";", run = "shell --interactive", desc = "Run a shell command"},
+	{ on = ":", run = "shell \"$0\" --cursor=0 --interactive", desc = "Run a shell command"},
+	{ on = "~", run = "help", desc = "Open help" },
+	{ on = ".", run = "hidden toggle", desc = "Toggle the visibility of dotfiles" },
+	{ on = "q", run = "quit", desc = "Exit Yazi" },
+
+	# Moving through files
+	{ on = "k", run = "arrow -1", desc = "Move up" },
+	{ on = "j", run = "arrow 1", desc = "Move down" },
+	{ on = "l", run = "enter", desc = "Enter a directory" },
+	{ on = "h", run = "leave", desc = "leave a directory" },
+
+	{ on = "<C-k>", run = "arrow -5", desc = "Move up" },
+	{ on = "<C-j>", run = "arrow 5", desc = "Move down" },
+	
+	{ on = "<C-j>", run = "seek 1", desc = "Move preview down" },
+	{ on = "<C-k>", run = "seek -1", desc = "Move preview up" },
+
+	# A is for file operations
+	{ on = ["a", "n"], run = "create", desc = "New file/directory" },
+	{ on = ["a", "d"], run = "remove", desc = "Delete a file" },
+	{ on = ["a", "r"], run = "rename", desc = "Rename a file" },
+	{ on = ["a", "c"], run = "yank", desc = "Copy a file" },
+	{ on = ["a", "x"], run = "yank --cut", desc = "Move a file" },
+	{ on = ["a", "v"], run = ["paste", "unyank"], desc = "Paste a file"},
+	{ on = ["a", "l"], run = ["link", "unyank"], desc = "Create a link to a copied file"},
+	{ on = ["a", "k"], run = ["link --relative", "unyank"], desc = "Create a relative link to a copied file"},
+
+	# S is for selection
+	{ on = "<Space>", run = ["select --state=none", "arrow 1"], desc = "Toggle file selection"},
+	{ on = ["s", "v"], run = "visual_mode", desc = "Enter visual mode" },
+	{ on = ["s", "a"], run = "select_all --state=true", desc = "Select all" },
+	{ on = ["s", "u"], run = "select_all --state=false", desc = "Unselect all" },
+
+	# F is for searching and filtering
+	{ on = ["f", "s"], run = "search fd", desc = "Search for a file/directory" },
+	{ on = ["f", "c"], run = "search rg", desc = "Search for file content"},
+	{ on = ["f", "f"], run = "filter", desc = "Filter the current directory" },
+
+	# G is for changing the directory
+	{ on = ["g", "h"], run = "cd ~", desc = "Change directory to home"},
+	{ on = ["g", "~"], run = "cd ~", desc = "Change directory to home"},
+	{ on = ["g", "/"], run = "cd /", desc = "Change directory to root"},
+	
+	# N and M are for directory display
+	{ on = ["n", "n"], run = ["sort alphabetical", "linemode none"], desc = "Sort by name" },
+	{ on = ["n", "s"], run = ["sort size", "linemode size"], desc = "Sort by size" },
+	{ on = ["n", "x"], run = ["sort extension", "linemode none"], desc = "Sort by extension" },
+	{ on = ["n", "o"], run = ["sort owner", "linemode owner"], desc = "Sort by owner" },
+	{ on = ["n", "c"], run = ["sort created", "linemode ctime"], desc = "Sort by creation time" },
+	{ on = ["n", "m"], run = ["sort modified", "linemode mtime"], desc = "Sort by modification time" },
+	{ on = ["n", "m"], run = ["sort --reverse=yes"], desc = "Reverse sorting" },
+	
+	{ on = ["m", "p"], run = "linemode permissions", desc = "Show permissions" },
+	{ on = ["m", "o"], run = "linemode owner", desc = "Show owner" },
+	{ on = ["m", "s"], run = "linemode size", desc = "Show size" },
+	{ on = ["m", "c"], run = "linemode ctime", desc = "Show creation time" },
+	{ on = ["m", "m"], run = "linemode mtime", desc = "Show modification time" },
+	{ on = ["m", "n"], run = "linemode none", desc = "Show noting"},
+]

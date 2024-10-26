@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+
+rofi -show emoji -i -theme-str '@import "emojimenu.rasi"'
