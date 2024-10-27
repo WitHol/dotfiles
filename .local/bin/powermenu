@@ -1,10 +1,10 @@
 #! /bin/sh
 
-chosen=$(printf "  Power Off\n  Restart\n  Log Out\n  Lock\n  UEFI Menu" | rofi -dmenu -i -theme-str '@import "power.rasi"')
+chosen=$(printf "  Shutdown\n  Reboot\n  Log Out\n  Lock\n  UEFI Menu" | rofi -dmenu -i -theme-str '@import "power.rasi"')
 
 case "$chosen" in
-	"  Power Off") poweroff ;;
-	"  Restart") reboot ;;
+	"  Shutdown") poweroff ;;
+	"  Reboot") reboot ;;
 	"  Log Out") hyprctl dispatch exit ;;
 	"  Lock") hyprlock ;;
 	"  UEFI Menu") systemctl reboot --firmware-setup ;;

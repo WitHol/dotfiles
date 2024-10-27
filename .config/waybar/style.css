@@ -50,12 +50,6 @@ window#waybar
     color: @workspace_urgent;
 }
 
-#window
-{
-	background-color: transparent;
-	color: @window;
-}
-
 #temperature,
 #clock,
 #network,
@@ -71,7 +65,7 @@ window#waybar
 {
     padding: 2 20px;
     border-radius: 15px;
-    margin: 5px 0;
+    margin: 5 0;
     background-color: @background;
 }
 
@@ -123,4 +117,5 @@ window#waybar
 #window
 {
     color: @window;
+    margin-right: 200px;
 }

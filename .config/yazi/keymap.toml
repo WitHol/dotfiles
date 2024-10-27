@@ -6,7 +6,6 @@ keymap = [
 	{ on = "<Enter>", run = "open", desc = "Open a file" },
 	{ on = ";", run = "shell --interactive", desc = "Run a shell command"},
 	{ on = ":", run = "shell \"$0\" --cursor=0 --interactive", desc = "Run a shell command"},
-	{ on = "~", run = "help", desc = "Open help" },
 	{ on = ".", run = "hidden toggle", desc = "Toggle the visibility of dotfiles" },
 	{ on = "q", run = "quit", desc = "Exit Yazi" },
 
@@ -44,9 +43,8 @@ keymap = [
 	{ on = ["f", "f"], run = "filter", desc = "Filter the current directory" },
 
 	# G is for changing the directory
-	{ on = ["g", "h"], run = "cd ~", desc = "Change directory to home"},
-	{ on = ["g", "~"], run = "cd ~", desc = "Change directory to home"},
-	{ on = ["g", "/"], run = "cd /", desc = "Change directory to root"},
+	{ on = "~", run = "cd ~", desc = "Change directory to home"},
+	{ on = "/", run = "cd /", desc = "Change directory to root"},
 	
 	# N and M are for directory display
 	{ on = ["n", "n"], run = ["sort alphabetical", "linemode none"], desc = "Sort by name" },

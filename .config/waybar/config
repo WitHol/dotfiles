@@ -4,8 +4,12 @@
 	"height": 30,
 	"spacing": 5,
 	"enableDefaultFonts": true,
-	"margin": 10,
 
+	"margin-top": 2,
+	"margin-bottom": -8,
+	"margin-left": 13,
+	"margin-right": 13,
+	
 	// Modules
 	"modules-left": 
 	[
