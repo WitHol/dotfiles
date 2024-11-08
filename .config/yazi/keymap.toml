@@ -53,7 +53,8 @@ keymap = [
 	{ on = ["n", "o"], run = ["sort owner", "linemode owner"], desc = "Sort by owner" },
 	{ on = ["n", "c"], run = ["sort created", "linemode ctime"], desc = "Sort by creation time" },
 	{ on = ["n", "m"], run = ["sort modified", "linemode mtime"], desc = "Sort by modification time" },
-	{ on = ["n", "m"], run = ["sort --reverse=yes"], desc = "Reverse sorting" },
+	{ on = ["n", "r"], run = ["sort --reverse=no"], desc = "Reverse sorting" },
+	{ on = ["n", "R"], run = ["sort --reverse=yes"], desc = "Reverse sorting" },
 	
 	{ on = ["m", "p"], run = "linemode permissions", desc = "Show permissions" },
 	{ on = ["m", "o"], run = "linemode owner", desc = "Show owner" },
@@ -61,4 +62,10 @@ keymap = [
 	{ on = ["m", "c"], run = "linemode ctime", desc = "Show creation time" },
 	{ on = ["m", "m"], run = "linemode mtime", desc = "Show modification time" },
 	{ on = ["m", "n"], run = "linemode none", desc = "Show noting"},
+
+	{ on = "<Tab>", run = "tab_switch 1 --relative", desc = "Switch tab"},
+	{ on = ["t", "s"], run = "tab_switch 1 --relative", desc = "Switch tab"},
+	{ on = ["t", "t"], run = ["tab_create", "tab_close 2", "tab_close 3"], desc = "Open a new tab"},
+	{ on = ["t", "T"], run = ["tab_create --current", "tab_close 2", "tab_close 3"], desc = "Open a new tab in the same dir"},
+	{ on = ["t", "d"], run = ["tab_swap -1", "tab_close 0"], desc = "Delete the current tab"},
 ]

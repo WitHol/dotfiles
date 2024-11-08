@@ -4,7 +4,7 @@ window
 	width: 240px;
 	location: north east;
 	x-offset: -10px;
-	y-offset: 70px;
+	y-offset: 50px;
 }
 
 element selected

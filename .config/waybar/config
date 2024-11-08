@@ -34,9 +34,7 @@
 
 	"hyprland/workspaces": 
 	{
-        "show-special": true,
         "persistent-workspaces": { "*":[1,2,3,4,5] },
-        
         "format": "{icon}",
         "format-icons": 
         {
@@ -53,6 +51,7 @@
 		"tooltip": false,
 		"interval": 1,
 		"on-click": "calendar",
+		"tooltip-format": "{}",
 	},
 
 	"network": 
@@ -67,9 +66,9 @@
     },
 
    	"custom/power": 
-	{
-		"format": "󰐥",
-		"on-click": "powermenu",
+    {
+        "format": "󰐥",
+	"on-click": "powermenu",
         "tooltip" : false,
     },
 
