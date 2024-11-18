@@ -8,6 +8,8 @@
 !/.config/dunst
 !/.config/yazi
 !/.config/zsh
+!/.config/lf
+!/.config/zsh
 
 !/.local
 /.local/*
