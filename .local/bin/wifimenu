@@ -41,7 +41,7 @@ else
 		nmcli connection up id "$chosen_id"
 	else
 		if [[ "$chosen_network" =~ "" ]]; then
-			wifi_password=$(rofi -dmenu -p "Password: " )
+			wifi_password=$(rofi -dmenu -p "Password: " -theme-str '@import "password.rasi"')
 		fi
 		nmcli device wifi connect "$chosen_id" password "$wifi_password"
     fi

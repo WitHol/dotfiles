@@ -24,6 +24,7 @@ keymap = [
 	# A is for file operations
 	{ on = ["a", "n"], run = "create", desc = "New file/directory" },
 	{ on = ["a", "d"], run = "remove", desc = "Delete a file" },
+	{ on = ["a", "d"], run = "remove --pernamently", desc = "Delete a file" },
 	{ on = ["a", "r"], run = "rename", desc = "Rename a file" },
 	{ on = ["a", "c"], run = "yank", desc = "Copy a file" },
 	{ on = ["a", "x"], run = "yank --cut", desc = "Move a file" },
@@ -68,4 +69,7 @@ keymap = [
 	{ on = ["t", "t"], run = ["tab_create", "tab_close 2", "tab_close 3"], desc = "Open a new tab"},
 	{ on = ["t", "T"], run = ["tab_create --current", "tab_close 2", "tab_close 3"], desc = "Open a new tab in the same dir"},
 	{ on = ["t", "d"], run = ["tab_swap -1", "tab_close 0"], desc = "Delete the current tab"},
+
+	{ on = ["r", "s"], run = "hyprctl dispatch exec alacritty .", desc = "Open the terminal here"},
+	{ on = ["r", "c"], run = "hyprctl dispatch exec code .", desc = "Open VSCode here"},
 ]
