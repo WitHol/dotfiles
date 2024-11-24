@@ -119,3 +119,7 @@ window#waybar
     color: @window;
     margin-right: 200px;
 }
+
+#tray
+{
+}
