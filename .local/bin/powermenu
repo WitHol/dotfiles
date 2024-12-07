@@ -3,10 +3,9 @@
 chosen=$(printf "  Shutdown\n  Reboot\n  Log Out\n  Lock\n  UEFI Menu" | rofi -dmenu -i -theme-str '@import "power.rasi"')
 
 case "$chosen" in
-	"  Shutdown") poweroff ;;
-	"  Reboot") reboot ;;
+	"  Shutdown") alacritty -e sudo poweroff ;;
+	"  Reboot") alacritty -e sudo reboot ;;
 	"  Log Out") hyprctl dispatch exit ;;
 	"  Lock") hyprlock ;;
-	"  UEFI Menu") systemctl reboot --firmware-setup ;;
 	*) exit 1 ;;
 esac

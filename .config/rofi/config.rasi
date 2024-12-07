@@ -4,7 +4,7 @@ configuration
 {
 	display-drun: "Applications:";
 	drun-display-format: "{name}";
-	modi: "window,run,drun,emoji";
+	modi: "window,run,drun";
 }
 
 

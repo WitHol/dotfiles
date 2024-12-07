@@ -3,5 +3,3 @@ show_hidden = false
 linemode = "permissions"
 show_symlink = true
 title_format = "Yazi"
-
-[input]
