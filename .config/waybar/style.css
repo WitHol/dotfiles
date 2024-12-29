@@ -39,16 +39,25 @@ window#waybar
 #workspaces button:hover 
 {
     color: @workspace_selected;
-    box-shadow: 0 0 0 0 transparent;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 
-#workspaces button.active {
+#workspaces button.selected
+{
+    color: @workspace_selected;
+}
+
+#workspaces button.active
+{
     color: @workspace_active;
 }
 
-#workspaces button.urgent {
+#workspaces button.urgent 
+{
     color: @workspace_urgent;
 }
+
 
 #temperature,
 #clock,

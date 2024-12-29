@@ -1,11 +1,10 @@
 #! /bin/sh
 
-chosen=$(printf "  Shutdown\n  Reboot\n  Log Out\n  Lock\n  UEFI Menu" | rofi -dmenu -i -theme-str '@import "power.rasi"')
+chosen=$(printf "  Shutdown\n  Reboot\n  Log Out\n" | rofi -dmenu -i -theme-str '@import "power.rasi"')
 
 case "$chosen" in
 	"  Shutdown") alacritty -e sudo poweroff ;;
 	"  Reboot") alacritty -e sudo reboot ;;
 	"  Log Out") hyprctl dispatch exit ;;
-	"  Lock") hyprlock ;;
 	*) exit 1 ;;
 esac

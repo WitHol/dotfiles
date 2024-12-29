@@ -1,6 +1,6 @@
 {
 	// General settings
-	"layer": "top",
+	"layer": "bottom",
 	"height": 30,
 	"spacing": 5,
 	"enableDefaultFonts": true,
