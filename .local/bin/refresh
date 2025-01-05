@@ -1,0 +1,17 @@
+#!/usr/bin/sh
+
+hyprctl dispatch exec source /etc/profile   
+
+killall waybar
+killall hyprpaper
+killall dunst
+killall wireplumber
+killall pipewire-pulse
+killall pipewire
+
+hyprctl dispatch exec waybar
+hyprctl dispatch exec hyprpaper
+hyprctl dispatch exec dunst
+hyprctl dispatch exec pipewire
+hyprctl dispatch exec pipewire-pulse
+hyprctl dispatch exec wireplumber

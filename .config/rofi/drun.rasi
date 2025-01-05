@@ -1,8 +1,0 @@
-window 
-{
-	width: 60%;
-	height: 60%;
-	padding: 10;
-	location: north;
-	y-offset: 50px;
-}

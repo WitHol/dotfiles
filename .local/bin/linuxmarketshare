@@ -1,0 +1,13 @@
+#!/usr/bin/sh
+
+unix_day_len=$((60*60*24))
+unix_time=$(( $(date +%s) - 7*$unix_day_len ))
+
+day=$(date -d @$unix_time +%d)
+week=$(date -d @$unix_time +%U)
+month=$(date -d @$unix_time +%m)
+year=$(date -d @$unix_time +%Y)
+
+url="https://gs.statcounter.com/chart.php?statType_hidden=os_combined&device_hidden=desktop&region_hidden=ww&granularity=weekly&fromWeekYear=$year-$week&toWeekYear=$year-$week&csv=1"
+market_share=$(curl -s $url | grep Linux | sed 's/.*,//g')
+printf "$market_share\n"

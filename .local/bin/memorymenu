@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+total=$(free -ht | grep Total | sed 's/\S*\s*//' | sed 's/\s*\S*\s*\S*\s*$//')
+used=$(free -ht | grep Total | sed 's/\S*\s*\S*\s*//' | sed 's/\s*\S*\s*$//')
+free=$(free -ht | grep Total | sed 's/\S*\s*\S*\s*\S*\s*//' | sed 's/\s*$//')
+
+printf "Total RAM: $total\nUsed RAM: $used\nFree RAM: $free\n" | rofi -dmenu -i -theme-str '@import "memorymenu.rasi"'
