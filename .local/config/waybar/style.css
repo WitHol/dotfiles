@@ -1,0 +1,115 @@
+@define-color background #222222;
+
+@define-color left #88bbff;
+
+@define-color workspace_selected #bb88ff;
+@define-color workspace_active #bb88ff;
+@define-color workspace_idle #555555;
+@define-color workspace_urgent #f38ba8;
+
+@define-color right_1 #99ffff;
+@define-color right_2 #ff9966;
+@define-color right_3 #ff88cc;
+@define-color right_4 #88ffaa;
+@define-color right_5 #ffff88;
+@define-color right_6 #ff8888;
+
+* 
+{
+    font-family: JetBrainsMono Nerd Font;
+    font-weight: 900;
+    font-size: 16px;
+    border: none;
+}
+
+window#waybar
+{
+    background-color: rgba(0,0,0,0);
+}
+
+#workspaces button
+{
+    background: transparent;
+    color: @workspace_idle;
+}
+
+#workspaces button:hover 
+{
+    color: @workspace_selected;
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#workspaces button.selected
+{
+    color: @workspace_selected;
+}
+
+#workspaces button.active
+{
+    color: @workspace_active;
+}
+
+#workspaces button.urgent 
+{
+    color: @workspace_urgent;
+}
+
+
+#temperature,
+#clock,
+#network,
+#custom-power,
+#cpu,
+#custom-launcher,
+#custom-screenshot,
+#custom-emoji,
+#custom-linux-market-share,
+#custom-emojimenu,
+#memory,
+#window,
+#wireplumber,
+#workspaces
+{
+    padding: 2 20px;
+    border-radius: 15px;
+    margin: 5 0;
+    background-color: @background;
+}
+
+#network
+{
+    color: @right_1;
+}
+#custom-linux-market-share
+{
+    color: @right_2;
+}
+#wireplumber
+{
+    color: @right_3;
+}
+#memory
+{
+    color: @right_4;
+}
+#clock
+{
+    color: @right_5;
+}
+#custom-power
+{
+    font-size: 24px;
+    color: @right_6;
+}
+
+#custom-launcher
+{
+    font-size: 24px;
+    color: @left;
+}
+#window
+{
+    color: @left;
+    margin-right: 200px;
+}

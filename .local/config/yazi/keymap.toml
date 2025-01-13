@@ -1,0 +1,68 @@
+[manager]
+
+keymap = [
+	# Basic
+	{ on = "<Esc>", run = ["unyank", "escape"], desc = "Exit the current action" },
+	{ on = "<Enter>", run = "open", desc = "Open a file" },
+	{ on = ";", run = "shell --interactive --orphan", desc = "Run a shell command"},
+	{ on = ":", run = "shell \"$0\" --cursor=0 --interactive --orphan", desc = "Run a shell command"},
+	{ on = "$", run = "shell --confirm --block '/usr/bin/env zsh'", desc = "Open the terminal" },
+	{ on = ".", run = "hidden toggle", desc = "Toggle the visibility of dotfiles" },
+	{ on = "q", run = "quit", desc = "Exit Yazi" },
+
+	# Moving through files
+	{ on = "k", run = "arrow -1", desc = "Move up" },
+	{ on = "j", run = "arrow 1", desc = "Move down" },
+	{ on = "l", run = "enter", desc = "Enter a directory" },
+	{ on = "h", run = "leave", desc = "leave a directory" },
+
+	{ on = "<C-k>", run = "arrow -5", desc = "Move up" },
+	{ on = "<C-j>", run = "arrow 5", desc = "Move down" },
+	{ on = ["g", "g"], run = "arrow -10000000", desc = "Move to the top" },
+	{ on = "G", run = "arrow 10000000", desc = "Move to the bottom" },
+	{ on = "e", run = "cd --interactive", desc = "Input a path" },
+	
+	{ on = "a", run = "create", desc = "New file/directory" },
+	{ on = "d", run = "remove", desc = "Trash a file" },
+	{ on = "D", run = "remove --pernamently", desc = "Delete a file" },
+	{ on = "r", run = "rename", desc = "Rename a file" },
+
+	{ on = "<Space>", run = ["toggle --state=none", "arrow 1"], desc = "Toggle file selection"},
+	{ on = "<C-Space>", run = ["toggle_all --state=yes"], desc = "Select all files"},
+	{ on = "v", run = "visual_mode", desc = "Enter visual mode" },
+	{ on = "y", run = "yank", desc = "Copy a file" },
+	{ on = "Y", run = "yank --cut", desc = "Move a file" },
+	{ on = "p", run = ["paste", "unyank"], desc = "Paste a file"},
+	{ on = "P", run = ["link", "unyank"], desc = "Create a link to a copied file"},
+
+	{ on = "?", run = "search fd", desc = "Search for a file/directory" },
+	{ on = "/", run = "filter", desc = "Filter the current directory" },
+
+	{ on = ["t", "g"], run = "shell --confirm 'tar --gzip -cf $1.tar.gz $0'", desc = "Archive a file with tar and gzip" },
+	{ on = ["t", "G"], run = "shell --confirm 'tar --gzip -xf $0'", desc = "Extract an archive using tar and gzip" },
+	{ on = ["t", "x"], run = "shell --confirm 'tar --xz -cf $1.tar.xz $0'", desc = "Archive a file with tar and xz" },
+	{ on = ["t", "X"], run = "shell --confirm 'tar --xz -xf $0'", desc = "Extract an archive using tar and xz" },
+	{ on = ["t", "z"], run = "shell --confirm 'zip $0.zip $0'", desc = "Compress a file to a zip" },
+	{ on = ["t", "Z"], run = "shell --confirm 'unzip $0'", desc = "Extract a zip file" },
+
+	{ on = ["s", "p"], run = "linemode permissions", desc = "Show permissions" },
+	{ on = ["s", "o"], run = "linemode owner", desc = "Show owner" },
+	{ on = ["s", "s"], run = "linemode size", desc = "Show size" },
+	{ on = ["s", "c"], run = "linemode ctime", desc = "Show creation time" },
+	{ on = ["s", "m"], run = "linemode mtime", desc = "Show modification time" },
+	{ on = ["s", "n"], run = "linemode none", desc = "Show noting"},
+
+	{ on = ["S", "n"], run = ["sort alphabetical", "linemode none"], desc = "Sort by name" },
+	{ on = ["S", "s"], run = ["sort size", "linemode size"], desc = "Sort by size" },
+	{ on = ["S", "x"], run = ["sort extension", "linemode none"], desc = "Sort by extension" },
+	{ on = ["S", "o"], run = ["sort owner", "linemode owner"], desc = "Sort by owner" },
+	{ on = ["S", "c"], run = ["sort created", "linemode ctime"], desc = "Sort by creation time" },
+	{ on = ["S", "m"], run = ["sort modified", "linemode mtime"], desc = "Sort by modification time" },
+	{ on = ["S", "r"], run = ["sort --reverse=no"], desc = "Reverse sorting" },
+	{ on = ["S", "R"], run = ["sort --reverse=yes"], desc = "Reverse sorting" },
+
+	{ on = "<Tab>", run = "tab_switch 1 --relative", desc = "Switch tab"},
+	{ on = "t", run = ["tab_create", "tab_close 2", "tab_close 3"], desc = "Open a new tab"},
+	{ on = "T", run = ["tab_create --current", "tab_close 2", "tab_close 3"], desc = "Open a new tab in the same dir"},
+	{ on = "c", run = ["tab_swap -1", "tab_close 0"], desc = "Delete the current tab"},
+]

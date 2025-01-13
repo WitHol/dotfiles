@@ -1,0 +1,18 @@
+window
+{
+	height: 110px;
+	width: 300px;
+	location: north east;
+	x-offset: -10px;
+	y-offset: 50px;
+}
+
+element selected
+{
+	background-color: inherit;
+}
+
+inputbar 
+{
+	enabled: false;
+}
