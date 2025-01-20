@@ -8,31 +8,23 @@ vim.g.have_nerd_font = true
 
 vim.opt.number = true -- Enable line numbers
 vim.opt.cursorline = true -- Show which line your cursor is on
-vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor.
+vim.opt.scrolloff = 10
+vim.opt.wrap = false
 
+vim.opt.splitbelow = true -- Make vertical splits appear at the bottom
+vim.opt.splitright = true -- Make horizontal splits appear at the right
 vim.opt.mouse = 'a' -- Enable mouse mode, it allows for eg. resizing splits
-
-vim.opt.showmode = false -- Don't show the mode, since it's already in the status line
-
-vim.opt.undofile = true -- Save undo history
+vim.opt.showmode = false
+vim.opt.undofile = true
+vim.opt.updatetime = 250
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.updatetime = 250 -- Decrease update time
-
-vim.opt.splitbelow = true -- Make horizontal splits open at the bottom
-
 -- Sets how neovim will display certain whitespace characters in the editor
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
 vim.opt.inccommand = 'split' -- Preview substitutions live
-
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
-
-vim.opt.wrap = false -- Disable line wrapping
 
 -- Tab configuration
 vim.opt.tabstop = 4
@@ -40,6 +32,14 @@ vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Remove search highlight on esc
+vim.keymap.set('n', '<leader>T', '<cmd>term<CR>') -- Open terminal on <leader>T
+vim.keymap.set('n', '<C-y>', '<cmd>redo<CR>') -- Bind ctrl+R to redo
+
+-- Rebinding the window resizing, because the default keymap is trash
+vim.keymap.set('n', '<C-w><C-]>', '<cmd>resize +4<CR>')
+vim.keymap.set('n', '<C-w><C-[>', '<cmd>resize -4<CR>')
+vim.keymap.set('n', '<C-w><C-.>', '<cmd>vertical resize +8<CR>')
+vim.keymap.set('n', '<C-w><C-,>', '<cmd>vertical resize -8<CR>')
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -70,8 +70,7 @@ require('lazy').setup({
   -- NOTE: -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  -- NOTE: Useful plugin to show you pending keybinds.
-  {
+  { -- NOTE: Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
@@ -125,8 +124,7 @@ require('lazy').setup({
     },
   },
 
-  -- NOTE: Fuzzy Finder
-  {
+  { -- NOTE: Fuzzy Finder
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',
@@ -223,8 +221,7 @@ require('lazy').setup({
     end,
   },
 
-  -- NOTE: LSP Plugins
-  {
+  { -- NOTE: LSP Plugins
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     'folke/lazydev.nvim',
@@ -240,8 +237,7 @@ require('lazy').setup({
   -- NOTE: Luvit (whatever it is)
   { 'Bilal2453/luvit-meta', lazy = true },
 
-  -- NOTE: Main LSP Configuration
-  {
+  { -- NOTE: Main LSP Configuration
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -258,38 +254,16 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
-      -- Brief aside: **What is LSP?**
-      --
-      -- LSP is an initialism you've probably heard, but might not understand what it is.
-      --
-      -- LSP stands for Language Server Protocol. It's a protocol that helps editors
-      -- and language tooling communicate in a standardized fashion.
-      --
-      -- In general, you have a "server" which is some tool built to understand a particular
-      -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-      -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-      -- processes that communicate with some "client" - in this case, Neovim!
-      --
-      -- LSP provides Neovim with features like:
-      --  - Go to definition
-      --  - Find references
-      --  - Autocompletion
-      --  - Symbol Search
-      --  - and more!
-      --
-      -- Thus, Language Servers are external tools that must be installed separately from
-      -- Neovim. This is where `mason` and related plugins come into play.
-
       --  This function gets run when an LSP attaches to a particular buffer.
       --    That is to say, every time a new file is opened that is associated with
       --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
       --    function will be executed to configure the current buffer
+      -- NOTE: Configuration of LSP keymaps
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
           -- Remember that Lua is a real programming language, and as such it is possible
           -- to define small helper and utility functions so you don't have to repeat yourself.
-          --
           -- In this case, we create a function that lets us more easily define mappings specific
           -- for LSP related items. It sets the mode, buffer and description for us each time.
           local map = function(keys, func, desc, mode)
@@ -359,7 +333,6 @@ require('lazy').setup({
 
           -- The following code creates a keymap to toggle inlay hints in your
           -- code, if the language server you are using supports them
-          --
           -- This may be unwanted, since they displace some of your code
           if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
@@ -369,7 +342,7 @@ require('lazy').setup({
         end,
       })
 
-      -- Change diagnostic symbols in the sign column (gutter)
+      -- NOTE: Diagnostic symbols in the sign column (gutter)
       if vim.g.have_nerd_font then
         local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
         local diagnostic_signs = {}
@@ -383,6 +356,7 @@ require('lazy').setup({
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
+      -- NOTE: Expancding nvim capabilities
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
@@ -399,16 +373,13 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
-        -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
         -- Some languages (like typescript) have entire language plugins that can be useful:
         --    https://github.com/pmizio/typescript-tools.nvim
-        --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        --
 
+        rust_analyzer = {},
         lua_ls = {
           settings = {
             Lua = {
@@ -424,8 +395,7 @@ require('lazy').setup({
       --  To check the current status of installed tools and/or manually install
       --  other tools, you can run
       --    :Mason
-      --
-      --  You can press `g?` for help in this menu.
+      -- NOTE: Mason
       require('mason').setup()
 
       -- You can add other tools here that you want Mason to install
@@ -433,10 +403,14 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'rust_analyzer',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        ensure_installed = {
+          "rust_analyzer",
+        },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
@@ -447,11 +421,12 @@ require('lazy').setup({
             require('lspconfig')[server_name].setup(server)
           end,
         },
+        automatic_installation = true,
       }
     end,
   },
 
-  { -- Autocompletion
+  { -- NOTE: Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
@@ -535,6 +510,7 @@ require('lazy').setup({
       }
     end,
   },
+
 
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then

@@ -13,10 +13,8 @@ fi
 # Getting and parsing the wifi list
 wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed 's/WPA\S/ /g' | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
 
-
 # User input with rofi 
 choice=$(printf "$status\n$wifi_list" | uniq -u | rofi -dmenu -i -theme-str '@import "network.rasi"' )
-
 
 # Processing input
 if [ "$choice" = "" ] || [ "$choice" = "  Wifi disabled" ] || [ "$choice" = "󰖪  Disconnected" ] || [ "$choice" = "󰖩  Connected to $current" ]
@@ -29,11 +27,11 @@ elif [ "$choice" = "󱛅  Disconnect" ]
 then    nmcli connection down "$current"
 else
     parsed=$(printf "$choice\n" | sed 's/^.\s*//g' | sed 's/\s*$//g')
-    if true $(printf "$choice\n" | cut -c1) = "" ] || nmcli -g NAME connection | grep -q "$parsed"
+    if [$(printf "$choice\n" | cut -c1) = "" ] || nmcli -g NAME connection | grep -q "$parsed"
     then    nmcli connection up id "$parsed"
-    else 
-        password=$(rofi -dmenu -p "Password: " -theme-str '@import "password.rasi"')
-        nmcli device wifi connect "$parsed" password "$password"
+    elif true
+    then    password=$(rofi -dmenu -p "Password: " -theme-str '@import "password.rasi"')
+            nmcli device wifi connect "$parsed" password "$password"
     fi
 fi
 
