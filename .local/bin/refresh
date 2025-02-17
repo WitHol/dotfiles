@@ -12,6 +12,8 @@ hyprctl dispatch exec dunst
 hyprctl dispatch exec pipewire
 hyprctl dispatch exec pipewire-pulse
 
-if $(ps -x | grep wireplumber | wc -l | grep -q 1)
-then hyprctl dispatch exec wireplumber
+if [ $(ps -x | grep wireplumber | wc -l) -ne 2 ]
+then	
+	killall wireplumber 
+	hyprctl dispatch exec wireplumber
 fi

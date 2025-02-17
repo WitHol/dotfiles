@@ -18,8 +18,8 @@ keymap = [
 
 	{ on = "<C-k>", run = "arrow -5", desc = "Move up" },
 	{ on = "<C-j>", run = "arrow 5", desc = "Move down" },
-	{ on = ["g", "g"], run = "arrow -10000000", desc = "Move to the top" },
-	{ on = "G", run = "arrow 10000000", desc = "Move to the bottom" },
+	{ on = ["g", "g"], run = "arrow top", desc = "Move to the top" },
+	{ on = "G", run = "arrow bottom", desc = "Move to the bottom" },
 	{ on = "e", run = "cd --interactive", desc = "Input a path" },
 	
 	{ on = "a", run = "create", desc = "New file/directory" },

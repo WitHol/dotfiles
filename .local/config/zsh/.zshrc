@@ -2,6 +2,7 @@
 source $XDG_CONFIG_HOME/zsh/powerlevel10k/.p10k.zsh
 source $XDG_CONFIG_HOME/zsh/powerlevel10k/powerlevel10k.zsh-theme
 source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # auto complete
 autoload -U compinit
@@ -19,8 +20,6 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 # vi mode
 bindkey -v
 export KEYTIMEOUT=1
-
-# change cursor in vi mode
 function zle-keymap-select {
     if [[ ${KEYMAP} == vicmd ]] ||
        [[ $1 == 'block' ]]; then
@@ -43,4 +42,9 @@ bindkey "^[[1;5D" backward-word
 alias free="free -h"
 alias df="df -h"
 alias ls="ls --color"
+
+# Changing the zcompdump location
 compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+
+# fortune & cowsay
+fortune -s | cowsay -f stegosaurus

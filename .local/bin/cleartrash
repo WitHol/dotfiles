@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+
+find $XDG_DATA_HOME/Trash/files -maxdepth 1 -mtime +14 -exec rm -rf {} \;
+find $XDG_DATA_HOME/Trash/info -maxdepth 1 -mtime +14 -exec rm -rf {} \;
