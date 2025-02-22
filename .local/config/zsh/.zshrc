@@ -48,3 +48,4 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 # fortune & cowsay
 fortune -s | cowsay -f stegosaurus
+echo

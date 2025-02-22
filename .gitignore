@@ -6,11 +6,13 @@
 
 !/.local
 /.local/*
+#[
 
 !/.local/bin
 
 !/.local/config
 /.local/config/*
+#[
 !/.local/config/rofi
 !/.local/config/hypr
 !/.local/config/waybar
@@ -18,8 +20,12 @@
 !/.local/config/yazi
 !/.local/config/zsh
 !/.local/config/nvim
+#]
 
 !/.local/share
 /.local/share/*
+#[
 !/.local/share/applications
+#]
 
+#]

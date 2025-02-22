@@ -12,5 +12,6 @@ export RUSTUP_HOME="$XDG_DATA_HOME"/rustup
 export SSB_HOME="$XDG_DATA_HOME"/zoom
 export _JAVA_OPTIONS="-Djava.util.prefs.userRoot=${XDG_CONFIG_HOME}/java - Djavafx.cachedir=${XDG_CACHE_HOME}/openjfx"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+export HISTFILE="${XDG_STATE_HOME}"/bash/history
 
 # alias minecraft-launcher="minecraft-launcher --workDir $XDG_DATA_HOME/minecraft"

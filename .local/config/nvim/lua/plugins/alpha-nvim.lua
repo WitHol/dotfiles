@@ -46,7 +46,7 @@ return {
 
     dashboard.section.buttons.val = {
       dashboard.button('n', '  >  new file', '<cmd>ene!<CR>'),
-      dashboard.button('n', '  >  browse files', "<cmd>e .<CR>"),
+      dashboard.button('f', '  >  file manager', "<cmd>e .<CR>"),
     }
 
     require("alpha").setup(dashboard.opts)

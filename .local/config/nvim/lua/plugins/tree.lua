@@ -7,24 +7,45 @@ return {
   },
 
   config = function()
-    local tree = require("nvim-tree")
-    local api = require("nvim-tree.api")
-
-    tree.setup({
+    require("nvim-tree").setup({
       view = {
-        side = "right"
+        side = "right",
       },
       filters = {
-        enable = false
+        enable = false,
+      },
+      actions = {
+        open_file = {
+          quit_on_open = true,
+        },
       },
     });
 
-    vim.keymap.set('n', "<c-b>", function()
-      if api.tree.is_tree_buf(vim.api.nvim_get_current_buf()) then
-        api.tree.close()
+    local api = require("nvim-tree.api")
+
+    -- Open floating terminal with <C-j> 
+    Treewin = nil
+    vim.keymap.set({'n', 'i', 'v', 't'}, '<leader>fm', function()
+      if Treewin and vim.api.nvim_win_is_valid(Treewin) then
+        vim.api.nvim_win_close(Treewin, true)
+        Treewin = nil
       else
-        api.tree.open()
+        local width = vim.o.columns;
+        local height = vim.o.lines;
+
+        Treewin = vim.api.nvim_open_win( vim.api.nvim_create_buf(false, true), true, {
+          relative = 'editor',
+          row = math.floor(height * 0.1),
+          col = math.floor(width * 0.1),
+          width = math.floor(width * 0.8),
+          height = math.floor(height * 0.8),
+          style = 'minimal',
+          border = 'rounded'
+        })
+
+        api.tree.open({current_window = true})
       end
-    end)
+    end, { desc = "[F]ile [M]anager" } )
+
   end,
 }

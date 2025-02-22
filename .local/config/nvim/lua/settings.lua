@@ -31,10 +31,10 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Remove search highlight on esc
 
--- Open floating terminal with <leader>T
+-- Open floating terminal with <C-j> 
 Termbuf = nil
 Termwin = nil
-vim.keymap.set({'n', 'i', 'v', 't'}, '<C-j>', function()
+vim.keymap.set({'n', 'i', 'v', 't'}, '<leader>tw', function()
   if Termwin and vim.api.nvim_win_is_valid(Termwin) then
     vim.api.nvim_win_close(Termwin, true)
     Termwin = nil
@@ -65,7 +65,7 @@ vim.keymap.set({'n', 'i', 'v', 't'}, '<C-j>', function()
       vim.fn.termopen(vim.o.shell)
     end
   end
-end)
+end, { desc = "[T]erminal [W]indow" })
 
 -- Rebinding the window resizing, because the default keymap is trash
 vim.keymap.set('n', '<C-w><C-]>', '<cmd>resize +4<CR>')
