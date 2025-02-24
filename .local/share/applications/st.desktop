@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=st
+Exec=st
+Terminal=false
+Categories=System;TerminalEmulator;
+Keywords=st;
+GenericName=Terminal
+Comment=Suckless Terminal
+StartupNotify=true

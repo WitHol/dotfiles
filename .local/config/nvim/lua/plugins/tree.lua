@@ -25,7 +25,7 @@ return {
 
     -- Open floating terminal with <C-j> 
     Treewin = nil
-    vim.keymap.set({'n', 'i', 'v', 't'}, '<leader>fm', function()
+    vim.keymap.set('n', '<leader>fm', function()
       if Treewin and vim.api.nvim_win_is_valid(Treewin) then
         vim.api.nvim_win_close(Treewin, true)
         Treewin = nil
@@ -46,6 +46,7 @@ return {
         api.tree.open({current_window = true})
       end
     end, { desc = "[F]ile [M]anager" } )
+    vim.keymap.set('n', '<esc>', api.tree.close);
 
   end,
 }

@@ -13,34 +13,26 @@ return {
 
         -- NOTE: Configuration of LSP keymaps
 
-        local map = function(keys, func, desc, mode)
-          mode = mode or 'n'
-          vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-        end
-
         local telescope = require('telescope.builtin')
 
-        map('<leader>gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-        map('<leader>gd', telescope.lsp_definitions, '[G]oto [D]efinition')
-        map('<leader>gr', telescope.lsp_references, '[G]oto [R]eferences')
-        map('<leader>gi', telescope.lsp_implementations, '[G]oto [I]mplementation')
-        map('<leader>gt', telescope.lsp_type_definitions, 'Goto [T]ype definition')
+        vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration' })
+        vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = '[G]oto  [D]efinition' })
+        vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, { desc = '[G]oto  [R]references' })
+        vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = '[G]oto  [I]mplementation' })
+        -- map('<leader>gd', telescope.lsp_definitions, '[G]oto [D]efinition')
+        -- map('<leader>gr', telescope.lsp_references, '[G]oto [R]eferences')
+        -- map('<leader>gi', telescope.lsp_implementations, '[G]oto [I]mplementation')
+        -- map('<leader>gt', telescope.lsp_type_definitions, 'Goto [T]ype definition')
 
-        -- Fuzzy find all the symbols in the current file/workspace
-        map('<leader>ss', telescope.lsp_document_symbols, '[S]earch [S]ymbols in current file')
-        map('<leader>sS', telescope.lsp_dynamic_workspace_symbols, '[S]earch [S]ymbols in current workspace')
+        vim.keymap.set('n', '<leader>ss', telescope.lsp_document_symbols, { desc = '[S]earch [S]ymbols in current file' })
+        vim.keymap.set('n', '<leader>sS', telescope.lsp_dynamic_workspace_symbols, { desc = '[S]earch [S]ymbols in current workspace' })
 
-        -- Rename a symbol under the cursor
-        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-
-        -- Execute a code action
-        map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction', { 'n', 'x' })
-
-        -- Show a tip about the hovered word
-        map('<leader>ht', vim.lsp.buf.hover, '[H]over [T]ip')
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame' })
+        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
+        vim.keymap.set('n', '<leader>ht', vim.lsp.buf.hover, { desc = '[H]over [T]ip' })
 
 
-        -- NOTE: Highlight references of the word under your cursor
+        -- Highlight references of the word under your cursor
         local client = vim.lsp.get_client_by_id(event.data.client_id)
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
           local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -65,25 +57,14 @@ return {
           })
         end
 
-        -- NOTE: Toggle inlay hints
+        -- Toggle inlay hints
         if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-          map('<leader>th', function()
+          vim.keymap.set('n', '<leader>th', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-          end, '[T]oggle Inlay [H]ints')
+          end, { desc = '[T]oggle Inlay [H]ints' })
         end
       end,
     })
-
-    -- NOTE: Diagnostic symbols in the sign column (gutter)
-    if vim.g.have_nerd_font then
-      local signs = { ERROR = '', WARN = '', INFO = '', HINT = '' }
-      local diagnostic_signs = {}
-      for type, icon in pairs(signs) do
-        diagnostic_signs[vim.diagnostic.severity[type]] = icon
-      end
-      vim.diagnostic.config { signs = { text = diagnostic_signs } }
-    end
-
 
     -- NOTE: Installing and configuring lsp servers with mason and mason-lspconfig
 
@@ -110,6 +91,7 @@ return {
           require('lspconfig')[server_name].setup(server)
         end,
       },
+      ensure_installed = ensure_installed,
       automatic_installation = true,
     })
   end,

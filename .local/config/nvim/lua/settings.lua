@@ -4,6 +4,7 @@ vim.g.have_nerd_font = true
 
 vim.opt.number = true -- Enable line numbers
 vim.opt.cursorline = true -- Show which line your cursor is on
+vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
 vim.opt.wrap = false
 
@@ -34,7 +35,7 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Remove search highlight o
 -- Open floating terminal with <C-j> 
 Termbuf = nil
 Termwin = nil
-vim.keymap.set({'n', 'i', 'v', 't'}, '<leader>tw', function()
+vim.keymap.set({'n', 'i', 'v', 't'}, '<C-t>', function()
   if Termwin and vim.api.nvim_win_is_valid(Termwin) then
     vim.api.nvim_win_close(Termwin, true)
     Termwin = nil
