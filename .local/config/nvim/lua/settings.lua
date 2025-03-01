@@ -30,7 +30,8 @@ vim.opt.shiftwidth = 4
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>') -- Remove search highlight on esc
+vim.keymap.set('n', '<Esc>', '<cmd>noh<CR>') -- Remove search highlight on esc
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Open floating terminal with <C-j> 
 Termbuf = nil
