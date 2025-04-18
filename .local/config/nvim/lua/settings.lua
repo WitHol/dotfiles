@@ -6,7 +6,6 @@ vim.opt.number = true -- Enable line numbers
 vim.opt.cursorline = true -- Show which line your cursor is on
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 10
-vim.opt.wrap = false
 
 vim.opt.splitbelow = true -- Make vertical splits appear at the bottom
 vim.opt.splitright = true -- Make horizontal splits appear at the right
@@ -93,3 +92,8 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
+vim.filetype.add({
+  extension = {
+    asm = "nasm",
+  }
+})

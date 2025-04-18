@@ -19,10 +19,7 @@ return {
         vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = '[G]oto  [D]efinition' })
         vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, { desc = '[G]oto  [R]references' })
         vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = '[G]oto  [I]mplementation' })
-        -- map('<leader>gd', telescope.lsp_definitions, '[G]oto [D]efinition')
-        -- map('<leader>gr', telescope.lsp_references, '[G]oto [R]eferences')
-        -- map('<leader>gi', telescope.lsp_implementations, '[G]oto [I]mplementation')
-        -- map('<leader>gt', telescope.lsp_type_definitions, 'Goto [T]ype definition')
+        vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = '[G]oto  [T]ype definition' })
 
         vim.keymap.set('n', '<leader>ss', telescope.lsp_document_symbols, { desc = '[S]earch [S]ymbols in current file' })
         vim.keymap.set('n', '<leader>sS', telescope.lsp_dynamic_workspace_symbols, { desc = '[S]earch [S]ymbols in current workspace' })
@@ -72,6 +69,7 @@ return {
     local servers = {
       rust_analyzer = {},
       lua_ls = {},
+      asm_lsp = {},
     }
 
     -- Variable holding the capabilities of lsp

@@ -46,7 +46,5 @@ return {
         api.tree.open({current_window = true})
       end
     end, { desc = "[F]ile [M]anager" } )
-    vim.keymap.set('n', '<esc>', api.tree.close);
-
   end,
 }

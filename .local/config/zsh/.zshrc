@@ -1,6 +1,11 @@
+# p10k prompt
+source ~/.local/config/zsh/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.local/config/zsh/.p10k.zsh ]] || source ~/.local/config/zsh/.p10k.zsh
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # plugins and prompts
-source $XDG_CONFIG_HOME/zsh/powerlevel10k/.p10k.zsh
-source $XDG_CONFIG_HOME/zsh/powerlevel10k/powerlevel10k.zsh-theme
 source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
@@ -48,4 +53,3 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 
 # fortune & cowsay
 fortune -s | cowsay -f stegosaurus
-echo
