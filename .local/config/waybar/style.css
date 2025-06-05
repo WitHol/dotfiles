@@ -22,7 +22,7 @@
 * {
     font-family: JetBrainsMono Nerd Font;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 15px;
     border: none;
 }
 
@@ -68,10 +68,10 @@ window#waybar {
 #window,
 #wireplumber,
 #workspaces {
-    padding: 2 20px;
-    border-radius: 15px;
+    padding: 1 20px;
     margin: 1 0 6 0;
     background-color: @background;
+    border-radius: 10px;
 }
 
 #network {

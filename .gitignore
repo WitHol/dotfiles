@@ -6,26 +6,17 @@
 
 !/.local
 /.local/*
-#[
 
 !/.local/bin
 
 !/.local/config
 /.local/config/*
-#[
 !/.local/config/rofi
 !/.local/config/hypr
 !/.local/config/waybar
 !/.local/config/dunst
 !/.local/config/yazi
+!/.local/config/lf
 !/.local/config/zsh
 !/.local/config/nvim
-#]
-
-!/.local/share
-/.local/share/*
-#[
-!/.local/share/applications
-#]
-
-#]
+!/.local/config/alacritty

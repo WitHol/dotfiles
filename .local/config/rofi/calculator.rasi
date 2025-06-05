@@ -1,13 +1,15 @@
-window
-{
-	height: 170px;
-	width: 300px;
+configuration {
+	display: "Applications:";
+}
+
+window {
+	height: 50px;
+	width: 500px;
 	location: north;
 	x-offset: 0px;
 	y-offset: 50px;
 }
 
-inputbar 
-{
+inputbar {
 	enabled: true;
 }

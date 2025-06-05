@@ -1,7 +1,6 @@
 @theme "/dev/null"
 
-configuration 
-{
+configuration {
 	display-drun: "Applications:";
 	drun-display-format: "{name}";
 	modi: "window,run,drun";

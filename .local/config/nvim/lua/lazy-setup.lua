@@ -31,6 +31,9 @@ require('lazy').setup({
   -- NOTE: Color scheme
   require('plugins.tokyonight'), -- folke/tokyonight.nvim
 
+  -- NOTE: Harpoon
+  require('plugins.harpoon'),
+
   -- NOTE: Fuzzy finder
   require('plugins.telescope'), -- nvim-telescope/telescope.nvim
 

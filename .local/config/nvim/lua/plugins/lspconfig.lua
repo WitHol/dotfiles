@@ -67,9 +67,13 @@ return {
 
     -- List of lsp servers to be installed with Mason
     local servers = {
+      -- NOTE: DISABLED! Learn your language, motherfucker. Stop relying on your shitty autocomplete!
       rust_analyzer = {},
       lua_ls = {},
       asm_lsp = {},
+      zls = {},
+      pylsp = {},
+      -- clangd = {},
     }
 
     -- Variable holding the capabilities of lsp
