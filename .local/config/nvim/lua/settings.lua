@@ -1,3 +1,7 @@
+-- Disabling netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
@@ -24,55 +28,12 @@ vim.opt.smartcase = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
--- Disabling netrw in favor of nvim-tree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
 
 vim.keymap.set('n', '<Esc>', '<cmd>noh<CR>') -- Remove search highlight on esc
-vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- Open floating terminal with <C-j> 
-Termbuf = nil
-Termwin = nil
-vim.keymap.set({'n', 'i', 'v', 't'}, '<C-t>', function()
-  if Termwin and vim.api.nvim_win_is_valid(Termwin) then
-    vim.api.nvim_win_close(Termwin, true)
-    Termwin = nil
-  else
-    local openterm = false;
-
-    if not Termbuf or not vim.api.nvim_buf_is_valid(Termbuf) then
-      Termbuf = vim.api.nvim_create_buf(false, true)
-      vim.bo[Termbuf].bufhidden = "hide"
-      vim.bo[Termbuf].filetype = "terminal"
-      openterm = true
-    end
-
-    local width = vim.o.columns;
-    local height = vim.o.lines;
-    Termwin = vim.api.nvim_open_win(Termbuf, true, {
-      relative = 'editor',
-      row = math.floor(height * 0.1),
-      col = math.floor(width * 0.1),
-      width = math.floor(width * 0.8),
-      height = math.floor(height * 0.8),
-      style = 'minimal',
-      border = 'rounded'
-    })
-
-    vim.cmd("startinsert")
-    if openterm then
-      vim.fn.termopen(vim.o.shell)
-    end
-  end
-end, { desc = "[T]erminal [W]indow" })
-
--- Rebinding the window resizing, because the default keymap is trash
-vim.keymap.set('n', '<C-w><C-]>', '<cmd>resize +4<CR>')
-vim.keymap.set('n', '<C-w><C-[>', '<cmd>resize -4<CR>')
-vim.keymap.set('n', '<C-w><C-.>', '<cmd>vertical resize +8<CR>')
-vim.keymap.set('n', '<C-w><C-,>', '<cmd>vertical resize -8<CR>')
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -83,17 +44,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- Tweaking the look of the terminal
-vim.api.nvim_create_autocmd('TermOpen', {
-  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
-  callback = function()
-    vim.opt.number = false
-    vim.opt.relativenumber = false
-  end,
-})
-
 vim.filetype.add({
   extension = {
     asm = "nasm",
   }
 })
+

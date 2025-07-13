@@ -16,10 +16,10 @@ return {
         local telescope = require('telescope.builtin')
 
         vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration' })
-        vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, { desc = '[G]oto  [D]efinition' })
-        vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, { desc = '[G]oto  [R]references' })
-        vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = '[G]oto  [I]mplementation' })
-        vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, { desc = '[G]oto  [T]ype definition' })
+        vim.keymap.set('n', '<leader>gd', telescope.lsp_definitions, { desc = '[G]oto  [D]efinition' })
+        vim.keymap.set('n', '<leader>gr', telescope.lsp_references, { desc = '[G]oto  [R]references' })
+        vim.keymap.set('n', '<leader>gi', telescope.lsp_implementations, { desc = '[G]oto  [I]mplementation' })
+        vim.keymap.set('n', '<leader>gt', telescope.lsp_type_definitions, { desc = '[G]oto  [T]ype definition' })
 
         vim.keymap.set('n', '<leader>ss', telescope.lsp_document_symbols, { desc = '[S]earch [S]ymbols in current file' })
         vim.keymap.set('n', '<leader>sS', telescope.lsp_dynamic_workspace_symbols, { desc = '[S]earch [S]ymbols in current workspace' })
@@ -63,29 +63,26 @@ return {
       end,
     })
 
-    -- NOTE: Installing and configuring lsp servers with mason and mason-lspconfig
-
-    -- List of lsp servers to be installed with Mason
+    -- List of lsp servers to be installed by Mason
     local servers = {
-      -- NOTE: DISABLED! Learn your language, motherfucker. Stop relying on your shitty autocomplete!
       rust_analyzer = {},
-      lua_ls = {},
-      asm_lsp = {},
       zls = {},
       pylsp = {},
-      -- clangd = {},
+      lua_ls = {},
     }
 
-    -- Variable holding the capabilities of lsp
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    -- The current capabilities of lsp
+    local capabilities = vim.tbl_deep_extend('force',
+      vim.lsp.protocol.make_client_capabilities(),
+      require('cmp_nvim_lsp').default_capabilities()
+    )
 
     -- Putting the configuration of servers and capabilities to practice
     local ensure_installed = vim.tbl_keys(servers or {})
     require('mason').setup()
     require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
     require('mason-lspconfig').setup({
-      -- We add a handler to configure lsp capabilities for each server
+      -- A handler to configure lsp capabilities for each server separately
       handlers = {
         function(server_name)
           local server = servers[server_name] or {}

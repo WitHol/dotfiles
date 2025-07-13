@@ -10,10 +10,10 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- NOTE: Auto detects tab width
+  -- NOTE: Shows plugins loading in the bottom right corner
   { 'j-hui/fidget.nvim', opts = {} },
 
-  -- NOTE: Shows plugins loading in the bottom right corner
+  -- NOTE: Auto detects tab width
   { 'tpope/vim-sleuth' },
 
   -- NOTE: Displays keymaps while typing them
@@ -30,9 +30,6 @@ require('lazy').setup({
 
   -- NOTE: Color scheme
   require('plugins.tokyonight'), -- folke/tokyonight.nvim
-
-  -- NOTE: Harpoon
-  require('plugins.harpoon'),
 
   -- NOTE: Fuzzy finder
   require('plugins.telescope'), -- nvim-telescope/telescope.nvim
@@ -51,6 +48,9 @@ require('lazy').setup({
 
   -- NOTE: File manager
   require('plugins.tree'), -- nvim-tree/nvim-tree.lua
+
+  -- NOTE: Pitchfork
+  -- { dir = "~/projects/pitchfork.nvim/", config = function() require("pitchfork").setup({}) end },
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

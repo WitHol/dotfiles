@@ -5,9 +5,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# plugins and prompts
+# plugins
 source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # auto complete
 autoload -U compinit
@@ -20,16 +19,20 @@ _comp_options+=(globdots)
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
+# Changing the zcompdump location
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+
 # aliases
 alias free="free -h"
 alias df="df -h"
 alias ls="ls --color"
 
-# Changing the zcompdump location
-compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+# changing the cursor style to beam
+echo -ne '\e[6 q'
 
-# fastfetch
+# starting the ssh agent with github access key
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/token
+clear
+
 fastfetch
-
-# no vi mode
-bindkey -e

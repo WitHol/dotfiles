@@ -3,12 +3,14 @@
 killall waybar
 killall hyprpaper
 killall dunst
+killall wl-clip-persist
 
 hyprctl dispatch exec waybar
 hyprctl dispatch exec hyprpaper
 hyprctl dispatch exec dunst
 hyprctl dispatch exec pipewire
 hyprctl dispatch exec pipewire-pulse
+#hyprctl dispatch exec "wl-clip-persist --clipboard both"
 
 eww reload
 

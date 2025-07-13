@@ -5,22 +5,45 @@ set icons true
 set sixel true
 set rulerfmt "%d  |%a  |%p  |\033[7;31m %m \033[0m  |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t"
 
-# Creating a directory
-cmd mkdir ${{
-  printf "directory Name: "
-  read ans
-  mkdir $ans
-}}
-
-# Creating a file
-cmd mkfile ${{
+# Creating a file/directory
+cmd make ${{
   printf "file Name: "
   read ans
-  $EDITOR $ans
+  echo $ans
+  echo $(echo $ans | tail -c 2)
+  if [ "$(echo $ans | tail -c 2)" = "/" ]; then
+    mkdir $(echo $ans | sed "s/\///g")
+  else
+    touch $ans
+    $EDITOR $ans
+  fi
 }}
 
-# Compression & archives
-cmd unarchive ${{
+# Trashing a file
+cmd trash ${{
+  for file in "$fx"; do
+    mv "$file" ~/.local/share/trash
+  done
+}}
+
+# Permanently removing a file
+cmd remove ${{
+  for file in "$fx"; do
+    rm -rf "$file"
+  done
+}}
+
+cmd nvim ${{
+  nvim "$f"
+}}
+
+cmd peek_shell ${{
+  printf "\npress ENTER to continue\n"
+  read _
+}}
+
+# Extracting from a compressed archive
+cmd extract ${{
   case "$f" in
       *.zip) unzip "$f" ;;
       *.rar) unrar x "$f" ;;
@@ -32,51 +55,85 @@ cmd unarchive ${{
   esac
 }}
 
-# Trashing a file
-cmd trash ${{
-  for file in $fx; do
-    mv $file ~/.local/share/trash
-  done
+cmd to_zip ${{
+  printf "archive name:"
+  read name
+  printf "compression level (0-9):"
+  read level
+  zip --recurse-paths -"$level" "$name" $(printf "$fx" | tr "\n" " ")
 }}
 
-# Permanently removing a file
-cmd remove ${{
-  for file in $fx; do
-    rm $file
-  done
+cmd to_rar ${{
+  printf "archive name:"
+  read name
+  rar a "$name" $(printf "$fx" | tr "\n" " ")
 }}
 
-cmd nvim ${{
-  nvim "$f"
+cmd to_tar_gz ${{
+  printf "archive name:"
+  read name
+  tar -czvf "$name" $(printf "$fx" | tr "\n" " ")
+}}
+
+cmd to_tar_bz ${{
+  printf "archive name:"
+  read name
+  tar -cjvf "$name" $(printf "$fx" | tr "\n" " ")
+}}
+
+cmd to_tar ${{
+  printf "archive name:"
+  read name
+  tar -cvf "$name" $(printf "$fx" | tr "\n" " ")
+}}
+
+cmd to_7z ${{
+  printf "archive name:"
+  read name
+  7z a "$name" $(printf "$fx" | tr "\n" " ")
 }}
 
 # Unbinding
 map d
 map m
-map <enter>
+map v
+map u
+map <space>
 
-# Keybinds
-map . set hidden!
-map o mkfile
-map O mkdir
-map d trash
-map D remove
+# Basic
+map a make
+map dd trash
+map DD remove
+
+# Copying and pasting
 map y copy
+map Y cut
 map p paste
-map x cut
 
-map <enter> nvim
-map <escape> clear
-map R reload
+# Selection
+map v :toggle; down
 
-map au unarchive
+# Misc
+map <enter> open
+map . set hidden!
+map <esc> :clear;unselect;reload
+map <space>v nvim
+map \# peek_shell
 
+# Compression
+map ce extract
+map cz to_zip
+map cg to_tar_gz
+map cb to_tar_bz
+map ct to_tar
+map c7 to_7z
+
+# Gotos
 map gp cd ~/projects
 map gs cd ~/screenshots
 map gl cd ~/.local
 map gb cd ~/.local/bin
 map gc cd ~/.local/config
 map gt cd ~/.local/share/trash
+map g/ cd /
 
-# map u $trashy restore -r 0
-# map dr $trashy restore

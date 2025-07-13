@@ -87,13 +87,15 @@ return {
         vim.keymap.set("n", "<2-LeftMouse>",  api.node.open.edit,                 opts("Open"))
         vim.keymap.set("n", "<2-RightMouse>", api.tree.change_root_to_node,       opts("CD"))
       end
-    });
+    })
 
-    local api = require("nvim-tree.api")
+    -- Disabling netrw
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
 
-    -- Open in a floating window with <leader>fm
+    -- Floating nvim-tree window under <leader>fm
     Treewin = nil
-    vim.keymap.set('n', '<leader>fm', function()
+    local toggle_floating_tree = function()
       if Treewin and vim.api.nvim_win_is_valid(Treewin) then
         vim.api.nvim_win_close(Treewin, true)
         Treewin = nil
@@ -111,8 +113,10 @@ return {
           border = 'rounded'
         })
 
-        api.tree.open({current_window = true})
+        require("nvim-tree.api").tree.open({current_window = true})
       end
-    end, { desc = "[F]ile [M]anager" } )
+    end
+
+    vim.keymap.set('n', '<leader>fm', toggle_floating_tree, { desc = "[F]ile [M]anager" } )
   end,
 }
