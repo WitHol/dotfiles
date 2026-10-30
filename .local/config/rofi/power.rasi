@@ -1,13 +1,11 @@
-window
-{
-	height: 110px;
-	width: 300px;
+window {
+	height: 107;
+	width: 300;
 	location: north east;
-	x-offset: -10px;
-	y-offset: 50px;
+	x-offset: -10;
+	y-offset: 50;
 }
 
-inputbar 
-{
+inputbar {
 	enabled: false;
 }

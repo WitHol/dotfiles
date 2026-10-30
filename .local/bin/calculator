@@ -1,6 +1,0 @@
-#!/bin/sh
-
-eqation=$(rofi -dmenu -p -theme-str '@import "calculator.rasi"')
-printf $equation
-qalc "$equation" | rofi -dmenu -theme-str '@import "emojimenu.rasi"'
-

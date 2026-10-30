@@ -1,0 +1,68 @@
+xkb_keymap {
+    xkb_types { include "complete" };
+    xkb_compat { include "complete" };
+    xkb_geometry { include "pc(pc105)" };
+    xkb_keycodes {
+        include "evdev" 
+        include "aliases"
+    };
+    xkb_symbols {
+        include "pc+us+inet(evdev)"
+        include "level3(ralt_switch)" // Enables right alt
+        key <CAPS> { [ ISO_Level3_Shift ] }; // Caps lock is useless anyway
+    
+        key <TLDE> { [ grave, U0303, U031A, U0330 ] }; // ` ◌̃ ◌̚ ◌̰
+        key <AE01> { [ U01C3, U01C2, U01C0, U01C1 ] }; // ǃ ǂ ǀ ǁ
+        key <AE02> { [ U00E6, U0153, U0276 ] }; // æ œ ɶ
+        key <AE03> { [ U025C, U025E, U026C, U026E ] }; // ɜ ɞ ɬ ɮ
+        key <AE04> { [ U027E, U027D, U02DE, U027A ] }; // ɾ ɽ ◌˞ ɺ
+        key <AE05> { [ U02A1, U02A2, U029C, U0267 ] }; // ʡ ʢ ʜ ɧ
+        key <AE06> { [ U0301, U030B, U030C, U0304 ] }; // ◌́ ◌̋ ◌̌ ◌̄
+        key <AE07> { [ U0300, U030F, U0302 ] }; // ◌̀ ◌̏ ◌̂
+        key <AE08> { [ U0318, U0319, U031D, U031E ] }; // ◌̘ ◌̙ ◌̝ ◌̞
+        key <AE09> { [ U0361, U031C, U032F ] }; // ◌͡◌ ◌̜ ◌̯
+        key <AE10> { [ U203F, U0339, U0306 ] }; // ‿ ◌̹ ◌̆
+        key <AE11> { [ U0320, any, U0325, U030A ] }; // ◌̠ ◌̥ ◌̊
+        key <AE12> { [ U0347, U031F, U032C ] }; // ◌͇ ◌̟ ◌̬
+    
+        key <AD01> { [ q, U0298, U207F ] }; // q ʘ ◌ⁿ
+        key <AD02> { [ w, U028D, U02B7 ] }; // w ʍ ◌ʷ
+        key <AD03> { [ e, U0259, U025B, U0258 ] }; // e ə ɛ ɘ
+        key <AD04> { [ r, U0279, U0281, U0280 ] }; // r ɹ ʁ ʀ
+        key <AD05> { [ t, U03B8, U0288 ] }; // t θ ʈ
+        key <AD06> { [ y, U028F, U028E, U0264 ] }; // y ʏ ʎ ɤ
+        key <AD07> { [ u, U028A, U0289 ] }; // u ʊ ʉ
+        key <AD08> { [ i, U026A, U0268 ] }; // i ɪ ɨ
+        key <AD09> { [ o, U00F8, U0254, U0275 ] }; // o ø ɔ ɵ
+        key <AD10> { [ p, U0278 ] }; // p ɸ
+        key <AD11> { [ bracketleft, U032A, U033C ] }; // [ ◌̪ ◌̼
+        key <AD12> { [ bracketright, U033A, U033B ] }; // ] ◌̺ ◌̻
+        key <BKSL> { [ bar, U2016, backslash ] }; // | ‖ \
+    
+        key <AC01> { [ a, U0250, U0252, U0251 ] }; // a ɐ ɒ ɑ
+        key <AC02> { [ s, U0283, U0282, U0255 ] }; // s ʃ ʂ ɕ
+        key <AC03> { [ d, U00F0, U0256 ] }; // d ð ɖ
+        key <AC04> { [ f ] }; // f
+        key <AC05> { [ U0261, U0263, U02E0, U0262] }; // ɡ ɣ ◌ˠ ɢ
+        key <AC06> { [ h, U0266, U02B0, U0127 ] }; // h ɦ ◌ʰ ħ
+        key <AC07> { [ j, U029D, U02B2, U025F ] }; // j ʝ ◌ʲ ɟ
+        key <AC08> { [ k ] }; // k
+        key <AC09> { [ l, U026D, U026B, U029F ] }; // l ɭ ɫ ʟ
+        key <AC10> { [ U02D1, U02D0, U0324, U0308 ] }; // ˑ ː ◌̤ ◌̈
+        key <AC11> { [ U02CC, U02C8, U0329, U02BC ] }; // ˌ ˈ ◌̩ ʼ
+    
+        key <AB01> { [ z, U0292, U0290, U0291 ] }; // z ʒ ʐ ʑ
+        key <AB02> { [ x, U03C7, U033D ] }; // x χ ◌̽
+        key <AB03> { [ c, U00E7, U02E1 ] }; // c ç ◌ˡ
+        key <AB04> { [ v, U028C, U028B, U2C71 ] }; // v ʌ ʋ ⱱ
+        key <AB05> { [ b, U03B2, U0299 ] }; // b β ʙ
+        key <AB06> { [ n, U014B, U0272, U0273 ] }; // n ŋ ɲ ɳ
+        key <AB07> { [ m, U0271, U026F, U0270 ] }; // m ɱ ɯ ɰ
+        key <AB08> { [ comma, U2197, any, U2191 ] }; // , ↗ ↑
+        key <AB09> { [ period, U2198, U25CC, U2193 ] }; // . ↘ ◌ ↓
+        key <AB10> { [ slash, U0294, U02E4, U0295 ] }; // / ʔ ◌ˤ ʕ
+    
+        include "level3(ralt_switch)"
+    };
+};
+

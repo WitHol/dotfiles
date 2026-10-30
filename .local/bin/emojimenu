@@ -1,3 +1,3 @@
-#!/usr/bin/sh
+#!/bin/sh
 
-rofi -show emoji -i -theme-str '@import "emojimenu.rasi"'
+rofi -show emoji -i -theme-str '@import "~/.local/config/rofi/emojimenu.rasi"'

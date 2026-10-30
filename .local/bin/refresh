@@ -3,19 +3,16 @@
 killall waybar
 killall hyprpaper
 killall dunst
-killall wl-clip-persist
+# killall pipewire
+# killall pipewire-pulse
+# killall wireplumber
 
-hyprctl dispatch exec waybar
-hyprctl dispatch exec hyprpaper
-hyprctl dispatch exec dunst
-hyprctl dispatch exec pipewire
-hyprctl dispatch exec pipewire-pulse
-#hyprctl dispatch exec "wl-clip-persist --clipboard both"
+hyprctl dispatch 'hl.dsp.exec_cmd("waybar")'
+hyprctl dispatch 'hl.dsp.exec_cmd("hyprpaper")'
+hyprctl dispatch 'hl.dsp.exec_cmd("dunst")'
+# hyprctl dispatch exec pipewire
+# hyprctl dispatch exec pipewire-pulse
+# hyprctl dispatch exec wireplumber
 
-eww reload
+hyprctl reload
 
-if [ $(ps -x | grep wireplumber | wc -l) -ne 2 ]
-then	
-	killall wireplumber 
-	hyprctl dispatch exec wireplumber
-fi

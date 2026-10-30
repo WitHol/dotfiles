@@ -1,107 +1,95 @@
 {
-	// General settings
-	"layer": "bottom",
-	"height": 30,
-	"spacing": 5,
-	"enableDefaultFonts": true,
+    // General settings
+    "layer": "bottom",
+    "height": 30,
+    "spacing": 5,
+    "enableDefaultFonts": true,
+    "position": "top",
 
-	"margin-top": 2,
-	"margin-bottom": -8,
-	"margin-left": 13,
-	"margin-right": 13,
-	
-	// Modules
-	"modules-left": 
-	[
-		"custom/launcher",
-		"hyprland/window",
-	],
-	
-	"modules-center": 
-	[
-		"hyprland/workspaces",
-	],
-	
-	"modules-right": 
-	[
-		"tray",
-		"network",
-		"custom/linux-market-share",
-		"wireplumber",
-		"memory",
-		"clock",
-		"custom/power",
-	],
+    "margin-top": 2,
+    "margin-bottom": -8,
+    "margin-left": 13,
+    "margin-right": 13,
+    
+    // Modules
+    "modules-left": [
+    	"custom/launcher",
+    	"hyprland/window"
+    ],
+    
+    "modules-center": [
+    	"hyprland/workspaces"
+    ],
+    
+    "modules-right": [
+    	"tray",
+    	"network",
+    	"custom/linux-market-share",
+    	"wireplumber",
+        "custom/keyboard-layout",
+    	"clock",
+    	"custom/power"
+    ],
 
-    "custom/launcher":
-    {
-    	"format": "󰮫",
-    	"on-click": "applauncher", "tooltip": false,
+    "custom/launcher": {
+        "format": "󰮫",
+        "on-click": "applauncher", "tooltip": false
     },
 
-	"hyprland/workspaces": 
-	{
+    "hyprland/workspaces": {
         "persistent-workspaces": { "*":[1,2,3,4,5,6,7] },
         "format": "{icon}",
-        "format-icons": 
-        {
+        "format-icons": {
             "active": "",
             "empty": "",
             "default": "",
-            "urgent": "",
-        },
-	},
+            "urgent": ""
+        }
+    },
 
-	"network": 
-	{
-		"format": "?",
+    "network": {
+    	"format": "?",
         "format-wifi": "󰤨 {}",
         "format-disconnected": "󰤭",
         "format-disabled": "󰤭",
-		"on-click": "networkmenu",
-		"tooltip": false,
-		"interval": 1,
-    },
-
-    "custom/linux-market-share":
-    {
-    	"exec": "linuxmarketshare",
-    	"format": " {}%",
-    	"interval": 3600,
+    	"on-click": "networkmenu",
     	"tooltip": false,
+    	"interval": 1
     },
 
-    "wireplumber":
-    {
+    "custom/linux-market-share": {
+        "exec": "linuxmarketshare",
+        "format": " {}%",
+        "interval": 3600,
+        "tooltip": false
+    },
+
+    "wireplumber": {
+        "interval": 1,
+        "format": "  {volume}%",
+    	"format-muted": "  {volume}%",
+        "tooltip": false
+    },
+
+    "custom/keyboard-layout": {
+        "format": "  {}",
+        "tooltip": "false",
+        "interval": 1,
+        "exec": "current-keyboard-layout",
+        "on-click": "keyboard-layout-menu"
+    },
+     
+    "clock": {
+    	"format": "{:%H:%M}",
+    	"tooltip": false,
     	"interval": 1,
-    	"format": "  {volume}%",
-		"format-muted": "  {volume}%",
-    	"tooltip": false,
+    	"on-click": "calendar",
+    	"tooltip-format": "{}"
     },
 
-	"memory":
-	{
-    	"interval": 1,
-    	"format": "  {used} Gb",
-    	"tooltip": false,
-		"on-click": "memorymenu",
-	},
-
-	 
-	"clock": 
-	{
-		"format": "{:%H:%M}",
-		"tooltip": false,
-		"interval": 1,
-		"on-click": "calendar",
-		"tooltip-format": "{}",
-	},
-
-
-   	"custom/power": 
-    {
+       "custom/power": {
         "format": "󰐥",
-		"on-click": "powermenu",
-        "tooltip" : false,
-    },
+    	"on-click": "powermenu",
+        "tooltip" : false
+    }
 }

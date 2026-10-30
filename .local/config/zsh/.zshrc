@@ -1,12 +1,9 @@
-# p10k prompt
-source ~/.local/config/zsh/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.local/config/zsh/.p10k.zsh ]] || source ~/.local/config/zsh/.p10k.zsh
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-# plugins
-source $XDG_CONFIG_HOME/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# my custom prompt
+precmd() {
+    previous_status=$?
+    [ $previous_status != 0 ] && printf "\n\e[31mfail: $previous_status\n"
+}
+PROMPT=$(printf "\e[94m → \e[0m")
 
 # auto complete
 autoload -U compinit
@@ -14,6 +11,9 @@ zstyle ':completion:*' menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)	
+
+# syntax highlighting
+source $ZDOTDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # moving with ctrl+arrows
 bindkey "^[[1;5C" forward-word
@@ -26,13 +26,10 @@ compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
 alias free="free -h"
 alias df="df -h"
 alias ls="ls --color"
+alias su="su -l"
+alias sudo="sudo -E"
 
-# changing the cursor style to beam
-echo -ne '\e[6 q'
+export MANPAGER="nvim +Man!"
 
-# starting the ssh agent with github access key
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/token
 clear
 
-fastfetch

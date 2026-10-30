@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 # Getting the network status
 current=$(nmcli connection show --active | grep wifi | sed 's/ .*//')

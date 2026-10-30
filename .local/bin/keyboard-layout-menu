@@ -1,0 +1,8 @@
+#!/bin/sh
+
+list=$(ls -1 $XDG_CONFIG_HOME/keyboard-layouts | grep "\.xkb$" | sed 's/\.xkb//')
+choice=$(printf "$list" | rofi -dmenu -i -theme-str '@import "keyboard-layout.rasi"')
+printf "$choice" || exit
+file=$(printf "$XDG_CONFIG_HOME/keyboard-layouts/$choice.xkb" | sed 's/\//\\\//g')
+sed -i "s/kb_file.*/kb_file = \"$file\"/" $XDG_CONFIG_HOME/hypr/hyprland/input.lua
+hyprctl reload

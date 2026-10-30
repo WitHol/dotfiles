@@ -10,47 +10,57 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- NOTE: Shows plugins loading in the bottom right corner
+  -- Shows plugins loading in the bottom right corner
   { 'j-hui/fidget.nvim', opts = {} },
 
-  -- NOTE: Auto detects tab width
+  -- Auto detects tab width
   { 'tpope/vim-sleuth' },
 
-  -- NOTE: Displays keymaps while typing them
-  require('plugins.which-key'), -- folke/which-key.nvim
+  {
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false }
+  },
 
-  -- NOTE: Highlight notes, comments, warns, etc.
-  require('plugins.todo-comments'), -- folke/todo-comments.nvim
+  {
+    'folke/tokyonight.nvim',
+     priority = 1000,
+     init = function() vim.cmd.colorscheme('tokyonight-night') end,
+  },
 
-  -- NOTE: Better opening screen
-  require('plugins.alpha-nvim'), -- goolord/alpha-nvim 
+  -- For cargo.toml files
+  {
+    "saecki/crates.nvim",
+    tag = 'stable',
+    event = { "BufRead Cargo.toml" },
+    config = function()
+      require('crates').setup()
+    end,
+  },
+  
+  -- Pitchfork
+  { dir = "~/projekty/pitchfork.nvim/", opts = {} },
 
-  -- NOTE: Statusline
-  require('plugins.lualine'), -- nvim-lualine/lualine.nvim
+  -- Suggests keymaps while typing
+  require('plugins.which-key'),
 
-  -- NOTE: Color scheme
-  require('plugins.tokyonight'), -- folke/tokyonight.nvim
+  -- Better status line
+  require('plugins.lualine'),
 
-  -- NOTE: Fuzzy finder
-  require('plugins.telescope'), -- nvim-telescope/telescope.nvim
+  -- Fuzzy finder
+  require('plugins.telescope'), 
 
-  -- NOTE: Lua lsp plugin
-  require('plugins.lazydev'), -- folke/lazydev.nvim
+  -- Better opening screen
+  require('plugins.alpha-nvim'),
 
-  -- NOTE: Helps manage rust crates in cargo.toml files
-  require('plugins.crates'), -- saecki/crates.nvim
+  -- Main LSP Configuration
+  require('plugins.lspconfig'),
 
-  -- NOTE: Main LSP Configuration
-  require('plugins.lspconfig'), -- neovim/nvim-lspconfig
+  -- Autocompletion
+  require('plugins.cmp'), 
 
-  -- NOTE: Autocompletion
-  require('plugins.cmp'), -- hrsh7th/nvim-cmp
-
-  -- NOTE: File manager
-  require('plugins.tree'), -- nvim-tree/nvim-tree.lua
-
-  -- NOTE: Pitchfork
-  -- { dir = "~/projects/pitchfork.nvim/", config = function() require("pitchfork").setup({}) end },
+  -- File manager
+  require('plugins.tree'), 
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

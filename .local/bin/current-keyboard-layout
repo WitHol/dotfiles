@@ -1,0 +1,4 @@
+#!/bin/sh
+
+printf $(grep '.*kb_file = ' $XDG_CONFIG_HOME/hypr/hyprland/input.lua | sed 's/.*\///' | sed 's/\.xkb.*//')
+printf '\n'

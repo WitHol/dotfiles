@@ -1,38 +1,36 @@
 # Settings
-set previewer ~/.config/lf/previewer
 set ignorecase true
 set icons true
-set sixel true
-set rulerfmt "%d  |%a  |%p  |\033[7;31m %m \033[0m  |\033[7;33m %c \033[0m  |\033[7;35m %s \033[0m  |\033[7;34m %f \033[0m  |%i/%t"
+set rulerfile "~/.local/config/lf/ruler"
 
 # Creating a file/directory
-cmd make ${{
+cmd create ${{
   printf "file Name: "
   read ans
-  echo $ans
-  echo $(echo $ans | tail -c 2)
   if [ "$(echo $ans | tail -c 2)" = "/" ]; then
-    mkdir $(echo $ans | sed "s/\///g")
+    mkdir $(echo $ans | sed 's/\///g')
   else
-    touch $ans
-    $EDITOR $ans
+    touch "$ans"
   fi
 }}
 
 # Trashing a file
 cmd trash ${{
-  for file in "$fx"; do
-    mv "$file" ~/.local/share/trash
+  for file in $fx; do
+    gtrash put "$file"
   done
 }}
 
 # Permanently removing a file
 cmd remove ${{
-  for file in "$fx"; do
-    rm -rf "$file"
-  done
+  rm -rf "$fx"
 }}
 
+cmd open ${{
+  xdg-open $fx
+}}
+
+# Opening a file with neovim
 cmd nvim ${{
   nvim "$f"
 }}
@@ -40,57 +38,6 @@ cmd nvim ${{
 cmd peek_shell ${{
   printf "\npress ENTER to continue\n"
   read _
-}}
-
-# Extracting from a compressed archive
-cmd extract ${{
-  case "$f" in
-      *.zip) unzip "$f" ;;
-      *.rar) unrar x "$f" ;;
-      *.tar.gz) tar -xzvf "$f" ;;
-      *.tar.bz2) tar -xjvf "$f" ;;
-      *.tar) tar -xvf "$f" ;;
-      *.7z) 7z e "$f" ;;
-      *) echo "Unsupported format" ;;
-  esac
-}}
-
-cmd to_zip ${{
-  printf "archive name:"
-  read name
-  printf "compression level (0-9):"
-  read level
-  zip --recurse-paths -"$level" "$name" $(printf "$fx" | tr "\n" " ")
-}}
-
-cmd to_rar ${{
-  printf "archive name:"
-  read name
-  rar a "$name" $(printf "$fx" | tr "\n" " ")
-}}
-
-cmd to_tar_gz ${{
-  printf "archive name:"
-  read name
-  tar -czvf "$name" $(printf "$fx" | tr "\n" " ")
-}}
-
-cmd to_tar_bz ${{
-  printf "archive name:"
-  read name
-  tar -cjvf "$name" $(printf "$fx" | tr "\n" " ")
-}}
-
-cmd to_tar ${{
-  printf "archive name:"
-  read name
-  tar -cvf "$name" $(printf "$fx" | tr "\n" " ")
-}}
-
-cmd to_7z ${{
-  printf "archive name:"
-  read name
-  7z a "$name" $(printf "$fx" | tr "\n" " ")
 }}
 
 # Unbinding
@@ -101,7 +48,7 @@ map u
 map <space>
 
 # Basic
-map a make
+map a create
 map dd trash
 map DD remove
 
@@ -112,21 +59,13 @@ map p paste
 
 # Selection
 map v :toggle; down
+map V :toggle; up
 
 # Misc
-map <enter> open
 map . set hidden!
 map <esc> :clear;unselect;reload
 map <space>v nvim
 map \# peek_shell
-
-# Compression
-map ce extract
-map cz to_zip
-map cg to_tar_gz
-map cb to_tar_bz
-map ct to_tar
-map c7 to_7z
 
 # Gotos
 map gp cd ~/projects

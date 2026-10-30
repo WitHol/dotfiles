@@ -15,8 +15,10 @@
 !/.local/config/hypr
 !/.local/config/waybar
 !/.local/config/dunst
-!/.local/config/yazi
 !/.local/config/lf
 !/.local/config/zsh
 !/.local/config/nvim
 !/.local/config/alacritty
+!/.local/config/keyboard-layouts
+!/.local/config/Xcompose
+!/.local/config/wallpaper.png

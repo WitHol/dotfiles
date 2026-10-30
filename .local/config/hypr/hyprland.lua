@@ -1,0 +1,6 @@
+require("hyprland.layout")
+require("hyprland.binds")
+require("hyprland.windowrules")
+require("hyprland.aesthetic")
+require("hyprland.input")
+require("hyprland.setup")

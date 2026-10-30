@@ -42,3 +42,4 @@ vim.keymap.set({'n', 'i', 'v', 't'}, '<C-t>', function()
     end
   end
 end, { desc = "[T]erminal [W]indow" })
+

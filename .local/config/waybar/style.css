@@ -67,23 +67,24 @@ window#waybar {
 #memory,
 #window,
 #wireplumber,
+#custom-keyboard-layout,
 #workspaces {
     padding: 1 20px;
     margin: 1 0 6 0;
     background-color: @background;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 #network {
     color: @bright_cyan;
 }
 #custom-linux-market-share {
-    color: @yellow;
+    color: @red;
 }
 #wireplumber {
     color: @bright_magenta;
 }
-#memory {
+#custom-keyboard-layout {
     color: @green;
 }
 #clock {

@@ -20,7 +20,7 @@ vim.opt.updatetime = 250
 vim.opt.inccommand = 'split' -- Preview substitutions live
 vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim.
 
--- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
+-- Case-insensitive searching unless \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
@@ -32,6 +32,8 @@ vim.opt.expandtab = true
 
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
+vim.keymap.set('n', 'J', 'gjgjgjgjgj')
+vim.keymap.set('n', 'K', 'gkgkgkgkgk')
 
 vim.keymap.set('n', '<Esc>', '<cmd>noh<CR>') -- Remove search highlight on esc
 

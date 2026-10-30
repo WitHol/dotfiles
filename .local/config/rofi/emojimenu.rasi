@@ -1,5 +1,4 @@
-window
-{
+window {
 	height: 500px;
 	width: 300px;
 	location: north east;

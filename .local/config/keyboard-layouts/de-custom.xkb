@@ -1,0 +1,53 @@
+xkb_keymap {
+    xkb_types { include "complete" };
+    xkb_compat { include "complete" };
+    xkb_geometry { include "pc(pc105)" };
+    xkb_keycodes { include "evdev" };
+    xkb_symbols {
+        include "pc+us+inet(evdev)"
+
+        key <RALT> { [ ISO_Level3_Shift  ] };
+        key <CAPS> { [ ISO_Level3_Shift  ] };
+        key <TLDE> { [ asciitilde, grave ] };
+
+        key <AE01> { [ 1, exclam,  combining_acute, combining_grave ] }; // ó ò
+        key <AE02> { [ 2, at,                U030C, U0302           ] }; // ǒ ô
+        key <AE03> { [ 3, hash,              U0308, combining_tilde ] }; // ö õ
+        key <AE04> { [ 4, dollar,    dead_currency, section         ] }; // ¤ §
+        key <AE05> { [ 5, percent,           U0304, U0306           ] }; // ō ŏ 
+        key <AE06> { [ 6, caren ] };
+        key <AE07> { [ 7, ampersand ] };
+        key <AE08> { [ 8, asterisk ] };
+        key <AE09> { [ 9, parenleft ] };
+        key <AE10> { [ 0, parenright ] };
+
+        key <AD01> { [ q, Q ] };
+        key <AD02> { [ w, W ] };
+        key <AD03> { [ e, E ] };
+        key <AD04> { [ r, R ] };
+        key <AD05> { [ t, T ] };
+        key <AD06> { [ y, Y ] };
+        key <AD07> { [ u, U ] };
+        key <AD08> { [ i, I ] };
+        key <AD09> { [ o, O ] };
+        key <AD10> { [ p, P ] };
+
+        key <AC01> { [ a, A ] };
+        key <AC02> { [ s, S ] };
+        key <AC03> { [ d, D ] };
+        key <AC04> { [ f, F ] };
+        key <AC05> { [ g, G ] };
+        key <AC06> { [ h, H ] };
+        key <AC07> { [ j, J ] };
+        key <AC08> { [ k, K ] };
+        key <AC09> { [ l, L ] };
+
+        key <AB01> { [ z, Z ] };
+        key <AB02> { [ x, X ] };
+        key <AB03> { [ c, C ] };
+        key <AB04> { [ v, V ] };
+        key <AB05> { [ b, B ] };
+        key <AB06> { [ n, N ] };
+        key <AB07> { [ m, M ] };
+    };
+};

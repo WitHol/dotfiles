@@ -1,37 +1,51 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    { 'williamboman/mason.nvim', config = true },
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    'hrsh7th/cmp-nvim-lsp',
   },
   config = function()
+    require('mason').setup({})
+    require('mason-tool-installer').setup({
+      ensure_installed = {
+        'lua-language-server',
+        'rust-analyzer'
+      }
+    })
+
+    vim.lsp.config('lua_ls', {})
+    vim.lsp.enable('lua_ls')
+
+    vim.lsp.config('rust_analyzer', {})
+    -- vim.lsp.enable('rust_analyzer')
+
+    -- vim.print("lsp-configured")
+
+    -- Keymaps, hightlights and all that stuff
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
       callback = function(event)
-
-        -- NOTE: Configuration of LSP keymaps
-
         local telescope = require('telescope.builtin')
+        local map = function(keymap, action, description)
+          vim.keymap.set('n', keymap, action, { desc = description })
+        end
 
-        vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = '[G]oto [D]eclaration' })
-        vim.keymap.set('n', '<leader>gd', telescope.lsp_definitions, { desc = '[G]oto  [D]efinition' })
-        vim.keymap.set('n', '<leader>gr', telescope.lsp_references, { desc = '[G]oto  [R]references' })
-        vim.keymap.set('n', '<leader>gi', telescope.lsp_implementations, { desc = '[G]oto  [I]mplementation' })
-        vim.keymap.set('n', '<leader>gt', telescope.lsp_type_definitions, { desc = '[G]oto  [T]ype definition' })
+        map('<leader>gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        map('<leader>gd', telescope.lsp_definitions, '[G]oto  [D]efinition')
+        map('<leader>gr', telescope.lsp_references, '[G]oto  [R]references')
+        map('<leader>gi', telescope.lsp_implementations, '[G]oto  [I]mplementation')
+        map('<leader>gt', telescope.lsp_type_definitions, '[G]oto  [T]ype definition')
 
-        vim.keymap.set('n', '<leader>ss', telescope.lsp_document_symbols, { desc = '[S]earch [S]ymbols in current file' })
-        vim.keymap.set('n', '<leader>sS', telescope.lsp_dynamic_workspace_symbols, { desc = '[S]earch [S]ymbols in current workspace' })
+        map('<leader>ss', telescope.lsp_document_symbols, '[S]earch [S]ymbols in current file')
+        map('<leader>sS', telescope.lsp_dynamic_workspace_symbols, '[S]earch [S]ymbols in current workspace')
 
-        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = '[R]e[n]ame' })
-        vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = '[C]ode [A]ction' })
-        vim.keymap.set('n', '<leader>ht', vim.lsp.buf.hover, { desc = '[H]over [T]ip' })
+        map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+        map('<leader>ht', vim.lsp.buf.hover, '[H]over [T]ip')
 
 
         -- Highlight references of the word under your cursor
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
           local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = event.buf,
@@ -55,43 +69,12 @@ return {
         end
 
         -- Toggle inlay hints
-        if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
           vim.keymap.set('n', '<leader>th', function()
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
           end, { desc = '[T]oggle Inlay [H]ints' })
         end
       end,
     })
-
-    -- List of lsp servers to be installed by Mason
-    local servers = {
-      rust_analyzer = {},
-      zls = {},
-      pylsp = {},
-      lua_ls = {},
-    }
-
-    -- The current capabilities of lsp
-    local capabilities = vim.tbl_deep_extend('force',
-      vim.lsp.protocol.make_client_capabilities(),
-      require('cmp_nvim_lsp').default_capabilities()
-    )
-
-    -- Putting the configuration of servers and capabilities to practice
-    local ensure_installed = vim.tbl_keys(servers or {})
-    require('mason').setup()
-    require('mason-tool-installer').setup({ ensure_installed = ensure_installed })
-    require('mason-lspconfig').setup({
-      -- A handler to configure lsp capabilities for each server separately
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          server.capabilities = vim.tbl_deep_extend('force', capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-      ensure_installed = ensure_installed,
-      automatic_installation = true,
-    })
-  end,
+  end
 }

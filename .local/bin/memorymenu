@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 total=$(free -ht | grep Total | sed -E 's/(\S*\s*){1}//' | sed 's/\s.*//')
  used=$(free -ht | grep Total | sed -E 's/(\S*\s*){2}//' | sed 's/\s.*//')

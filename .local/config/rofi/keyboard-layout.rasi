@@ -1,0 +1,11 @@
+window {
+	height: 214;
+	width: 300;
+	location: north east;
+	x-offset: -10;
+	y-offset: 50;
+}
+
+inputbar {
+	enabled: false;
+}
